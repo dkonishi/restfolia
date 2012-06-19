@@ -6,7 +6,7 @@ module Restfolia::HTTP
     # Public: Do a HTTP Request.
     #
     # method - HTTP verb to be used. Options: :get, :post, :put, :delete
-    # url    - a String to request. (ex: http://fake.com/service)
+    # url    - a String to request. (ex: http://fake.com/service). If you are using basic authentication, you could pass user and password on url. (ex: http://user:password@fake.com/service)
     # args   - Hash options to build request (default: {}):
     #        :query   - String to be set with url (optional).
     #        :body    - String to be set with request (optional).
@@ -46,6 +46,7 @@ module Restfolia::HTTP
         verb["Cookie"] = cookies
       end
 
+      verb.basic_auth(uri.user, uri.password) if uri.user
       http.request(verb)
     end
 
