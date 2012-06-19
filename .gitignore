@@ -6,3 +6,4 @@ tags
 .rvmrc*
 .yardoc*
 doc/
+*.sw*
